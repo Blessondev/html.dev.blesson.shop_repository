@@ -45,5 +45,5 @@ variable "instance_type" {
 
 locals {
   current_timestamp = timestamp()
-  image_name        = "${local.project_name}-${local.project_env}-${local.current_timestamp}"
+  image_name        = "${var.project_name}-${var.project_env}-${local.current_timestamp}"
 }
