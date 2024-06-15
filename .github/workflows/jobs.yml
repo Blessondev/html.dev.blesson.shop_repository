@@ -73,10 +73,10 @@ jobs:
       run: terraform fmt
       working-directory: ./terraform/
 
-    - name: Terraform plan
-      run: terraform plan -var-file=development.tfvars -auto-approve
-      working-directory: ./terraform/
+#    - name: Terraform plan
+#      run: terraform plan -var-file=development.tfvars -auto-approve
+#      working-directory: ./terraform/
 
     - name: Terraform apply
-      run: terraform apply -var-file=development.tfvars -auto-approv
+      run: terraform apply -var-file=development.tfvars -auto-approve
       working-directory: ./terraform/
