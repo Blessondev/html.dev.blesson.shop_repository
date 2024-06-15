@@ -57,8 +57,11 @@ jobs:
        aws-access-key-id: ${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
        aws-secret-access-key: ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
        aws-region: ${{ secrets.DEV_AWS_REGION }} 
-       
-    - name: Terraform Init
+
+    - name: Verify Terraform Installation
+      run: terraform --version
+
+      - name: Terraform Init
       run: terraform init --backend-config=development-backend.conf
       working-directory: ./terraform/ 
 
