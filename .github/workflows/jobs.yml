@@ -35,3 +35,45 @@ jobs:
     - name: Build Packer image
       run: packer build -var-file=development.vars.hcl .
       working-directory: ./packer/
+
+  website_deploy:  
+    needs: packer-build   
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v3 
+      
+   # Install the selected version of Terraform CLI 
+   - name: Setup Terraform
+     uses: hashicorp/setup-terraform@v2
+     with:
+       terraform_version: 1.8.5
+
+   - name: Set up AWS credentials
+     uses: aws-actions/configure-aws-credentials@v4
+     with:
+       aws-access-key-id: ${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
+       aws-secret-access-key: ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
+       aws-region: ${{ secrets.DEV_AWS_REGION }} 
+       
+   - name: Terraform Init
+     run: terraform init -backend-config=development-backend.conf .
+     working-directory: ./terraform/ 
+
+  - name: Terraform Format
+    run: terraform fmt
+    working-directory: ./terraform/
+
+  - name: Terraform Format
+    run: terraform fmt
+    working-directory: ./terraform/
+
+  - name: Terraform plan
+    run: terraform plan -var-file=development.tfvars -auto-approve  .
+    working-directory: ./terraform/
+
+  - name: Terraform apply
+    run: terraform apply -var-file=development.tfvars -auto-approve .
+    working-directory: ./terraform/
