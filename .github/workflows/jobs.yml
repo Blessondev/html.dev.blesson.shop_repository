@@ -59,7 +59,7 @@ jobs:
        aws-region: ${{ secrets.DEV_AWS_REGION }} 
        
     - name: Terraform Init
-      run: terraform init --backend-config=development-backend.conf .
+      run: terraform init --backend-config=development-backend.conf
       working-directory: ./terraform/ 
 
     - name: Terraform Format
@@ -71,9 +71,9 @@ jobs:
       working-directory: ./terraform/
 
     - name: Terraform plan
-      run: terraform plan -var-file=development.tfvars -auto-approve  .
+      run: terraform plan -var-file=development.tfvars -auto-approve
       working-directory: ./terraform/
 
     - name: Terraform apply
-      run: terraform apply -var-file=development.tfvars -auto-approve .
+      run: terraform apply -var-file=development.tfvars -auto-approv
       working-directory: ./terraform/
