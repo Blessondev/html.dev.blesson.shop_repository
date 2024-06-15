@@ -45,7 +45,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3 
       
-    # Install the selected version of Terraform CLI 
+    # Install the selected version of Terraform  CLI 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
       with:
