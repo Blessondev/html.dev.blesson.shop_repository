@@ -44,6 +44,6 @@ variable "instance_type" {
 
 
 locals {
-  current_timestamp = formatdate("YYYY-MM-DD-HH-MM-SS", timestamp())
+  current_timestamp = formatdate("YYYY-MM-DD-HH-MM", timestamp())
   image_name        = "${var.project_name}-${var.project_env}-${local.current_timestamp}"
 }
