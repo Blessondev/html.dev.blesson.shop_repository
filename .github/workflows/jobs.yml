@@ -61,7 +61,7 @@ jobs:
     - name: Verify Terraform Installation
       run: terraform --version
 
-      - name: Terraform Init
+    - name: Terraform Init
       run: terraform init --backend-config=development-backend.conf
       working-directory: ./terraform/ 
 
